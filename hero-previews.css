@@ -1,0 +1,404 @@
+:root {
+  --bg: #0d0810;
+  --ink: #f4edf1;
+  --muted: #d7ccd0;
+  --gold: #d7a463;
+  --red: #6f1815;
+  --header-height: 74px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+html[data-option="option-one"] .hero-preview:not(#option-one),
+html[data-option="option-two"] .hero-preview:not(#option-two),
+html[data-option="option-three"] .hero-preview:not(#option-three),
+html[data-option="option-four"] .hero-preview:not(#option-four),
+html[data-option="option-five"] .hero-preview:not(#option-five),
+html[data-option="option-six"] .hero-preview:not(#option-six),
+html[data-option="option-seven"] .hero-preview:not(#option-seven),
+html[data-option="option-eight"] .hero-preview:not(#option-eight) {
+  display: none;
+}
+
+.preview-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  padding: 0 clamp(1.2rem, 4.8vw, 5.9rem);
+  border-bottom: 1px solid rgba(151, 118, 124, 0.16);
+  background: rgba(13, 8, 16, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.preview-header a {
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.preview-header nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.preview-header nav a,
+.hero-copy a,
+.eyebrow,
+.preview-label {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.preview-header nav a,
+.hero-copy a {
+  color: var(--gold);
+}
+
+.hero-preview {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: calc(100vh - var(--header-height));
+  padding: clamp(3.5rem, 8vw, 6.8rem) clamp(2.1rem, 4.8vw, 5.9rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-preview::before {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  content: "";
+  background:
+    radial-gradient(circle at 18% 22%, rgba(111, 24, 21, 0.26), transparent 28rem),
+    url("assets/velvet-architecture.png") center / cover no-repeat;
+  opacity: 0.36;
+}
+
+.hero-single::after {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background-image:
+    linear-gradient(90deg, rgba(13, 8, 16, 0.98) 0%, rgba(13, 8, 16, 0.86) 33%, rgba(13, 8, 16, 0.32) 63%, rgba(13, 8, 16, 0.14) 100%),
+    var(--hero-image);
+  background-position: center, var(--hero-position);
+  background-size: cover, var(--hero-size, cover);
+  background-repeat: no-repeat;
+  filter: saturate(var(--hero-saturation, 0.88)) contrast(var(--hero-contrast, 1.08)) brightness(var(--hero-brightness, 0.74));
+}
+
+.hero-preview::after {
+  box-shadow: inset 0 -18rem 22rem rgba(13, 8, 16, 0.8);
+}
+
+.hero-whip {
+  --hero-image: url("assets/photos/miss-emilia-standing-whip.png");
+  --hero-position: 79% 50%;
+  --hero-size: auto 100%;
+  --hero-saturation: 0.82;
+  --hero-contrast: 1.12;
+  --hero-brightness: 0.76;
+}
+
+.hero-full-cover {
+  --hero-image: url("assets/photos/miss-emilia-standing-whip.png");
+  --hero-position: 68% 50%;
+  --hero-size: cover;
+  --hero-saturation: 0.82;
+  --hero-contrast: 1.08;
+  --hero-brightness: 0.72;
+}
+
+.hero-full-cover::after {
+  background-image:
+    linear-gradient(90deg, rgba(13, 8, 16, 0.98) 0%, rgba(13, 8, 16, 0.86) 32%, rgba(13, 8, 16, 0.38) 58%, rgba(13, 8, 16, 0.2) 100%),
+    var(--hero-image);
+}
+
+.hero-full-velvet {
+  --hero-image: url("assets/photos/miss-emilia-standing-whip.png");
+  --hero-position: 72% 50%;
+  --hero-size: cover;
+  --hero-saturation: 0.72;
+  --hero-contrast: 1.12;
+  --hero-brightness: 0.66;
+}
+
+.hero-full-velvet::after {
+  background-image:
+    linear-gradient(90deg, rgba(13, 8, 16, 0.98) 0%, rgba(13, 8, 16, 0.88) 34%, rgba(13, 8, 16, 0.52) 62%, rgba(13, 8, 16, 0.28) 100%),
+    radial-gradient(circle at 76% 44%, rgba(111, 24, 21, 0.2), transparent 24rem),
+    url("assets/velvet-architecture.png"),
+    var(--hero-image);
+  background-position: center, center, center, var(--hero-position);
+  background-size: cover, cover, cover, var(--hero-size);
+  background-blend-mode: normal, normal, soft-light, normal;
+}
+
+.hero-full-spotlight {
+  --hero-image: url("assets/photos/miss-emilia-standing-whip.png");
+  --hero-position: 74% 50%;
+  --hero-size: cover;
+  --hero-saturation: 0.82;
+  --hero-contrast: 1.16;
+  --hero-brightness: 0.68;
+}
+
+.hero-full-spotlight::after {
+  background-image:
+    radial-gradient(ellipse at 78% 46%, rgba(255, 226, 191, 0.2), transparent 22rem),
+    linear-gradient(90deg, rgba(13, 8, 16, 0.99) 0%, rgba(13, 8, 16, 0.9) 32%, rgba(13, 8, 16, 0.34) 60%, rgba(13, 8, 16, 0.16) 100%),
+    var(--hero-image);
+  background-position: center, center, var(--hero-position);
+  background-size: cover, cover, var(--hero-size);
+}
+
+.hero-portrait {
+  --hero-image: url("assets/photos/miss-emilia-close-red.jpg");
+  --hero-position: 82% 42%;
+  --hero-saturation: 0.82;
+  --hero-contrast: 1.1;
+  --hero-brightness: 0.68;
+}
+
+.hero-cage {
+  --hero-image: url("assets/photos/miss-emilia-cage-red.jpg");
+  --hero-position: 80% 50%;
+  --hero-size: auto 100%;
+  --hero-saturation: 0.82;
+  --hero-contrast: 1.14;
+  --hero-brightness: 0.72;
+}
+
+.hero-mono {
+  --hero-image: url("assets/photos/miss-emilia-chain-mono.jpg");
+  --hero-position: 134% 50%;
+  --hero-size: auto 100%;
+  --hero-saturation: 0;
+  --hero-contrast: 1.22;
+  --hero-brightness: 1;
+}
+
+.hero-mono::after {
+  background-image:
+    linear-gradient(90deg, rgba(13, 8, 16, 0.99) 0%, rgba(13, 8, 16, 0.88) 34%, rgba(13, 8, 16, 0.28) 66%, rgba(13, 8, 16, 0.12) 100%),
+    radial-gradient(circle at 74% 42%, rgba(215, 164, 99, 0.22), transparent 24rem),
+    var(--hero-image);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--gold);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(4.8rem, 9.4vw, 9.4rem);
+  font-weight: 500;
+  line-height: 0.82;
+}
+
+h1 span {
+  display: inline;
+}
+
+.hero-copy p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 1.5rem 0 2.2rem;
+  color: var(--muted);
+  font-size: clamp(1.5rem, 2.6vw, 2.35rem);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.hero-copy a {
+  text-decoration: none;
+}
+
+.preview-label {
+  position: absolute;
+  top: calc(var(--header-height) + 1.1rem);
+  right: clamp(1.2rem, 4.8vw, 5.9rem);
+  z-index: 3;
+  color: rgba(215, 164, 99, 0.78);
+}
+
+.hero-diptych {
+  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 0.78fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+  background:
+    radial-gradient(circle at 74% 48%, rgba(111, 24, 21, 0.2), transparent 24rem),
+    #0d0810;
+}
+
+.hero-diptych::after {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background: linear-gradient(90deg, rgba(13, 8, 16, 0.96), rgba(13, 8, 16, 0.5));
+}
+
+.diptych {
+  display: grid;
+  grid-template-columns: 0.76fr 1fr;
+  gap: 1.1rem;
+  align-items: end;
+  height: min(72vh, 700px);
+}
+
+.diptych-panel {
+  min-height: 100%;
+  border: 1px solid rgba(151, 118, 124, 0.22);
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 2rem 7rem rgba(0, 0, 0, 0.42);
+}
+
+.panel-one {
+  height: 84%;
+  min-height: 84%;
+  background-image:
+    linear-gradient(180deg, rgba(13, 8, 16, 0.18), rgba(13, 8, 16, 0.36)),
+    url("assets/photos/miss-emilia-close-red.jpg");
+  background-position: 54% 36%;
+  filter: saturate(0.82) contrast(1.08) brightness(0.84);
+}
+
+.panel-two {
+  background-image:
+    linear-gradient(180deg, rgba(13, 8, 16, 0.14), rgba(13, 8, 16, 0.46)),
+    url("assets/photos/miss-emilia-latex-portrait.jpg");
+  background-position: 52% 35%;
+  filter: saturate(0.76) contrast(1.12) brightness(0.78);
+}
+
+@media (max-width: 820px) {
+  :root {
+    --header-height: 94px;
+  }
+
+  .preview-header {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.72rem;
+    padding: 0 1.15rem;
+  }
+
+  .preview-header nav {
+    gap: 1rem;
+  }
+
+  .hero-preview {
+    min-height: calc(100vh - var(--header-height));
+    padding: 2.4rem 1.15rem;
+  }
+
+  .hero-single::after {
+    background-image:
+      linear-gradient(180deg, rgba(13, 8, 16, 0.34), rgba(13, 8, 16, 0.7) 46%, rgba(13, 8, 16, 0.98) 100%),
+      var(--hero-image);
+    background-position: center, var(--mobile-position, center top);
+  }
+
+  .hero-whip {
+    --mobile-position: 48% 0%;
+  }
+
+  .hero-portrait {
+    --mobile-position: 50% 0%;
+  }
+
+  .hero-cage {
+    --mobile-position: 50% 0%;
+  }
+
+  .hero-mono {
+    --mobile-position: 58% 0%;
+  }
+
+  .hero-copy {
+    align-self: end;
+  }
+
+  h1 {
+    font-size: clamp(4rem, 20vw, 5rem);
+  }
+
+  h1 span {
+    display: block;
+  }
+
+  .preview-label {
+    top: calc(var(--header-height) + 0.9rem);
+    left: 1.15rem;
+    right: auto;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-diptych {
+    grid-template-columns: 1fr;
+  }
+
+  .diptych {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    display: block;
+    height: auto;
+  }
+
+  .diptych-panel {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    border: 0;
+  }
+
+  .panel-one {
+    opacity: 0;
+  }
+
+  .panel-two {
+    background-position: 50% 0%;
+    opacity: 0.72;
+  }
+
+  .hero-diptych::after {
+    background: linear-gradient(180deg, rgba(13, 8, 16, 0.3), rgba(13, 8, 16, 0.82) 52%, rgba(13, 8, 16, 0.98));
+  }
+}
