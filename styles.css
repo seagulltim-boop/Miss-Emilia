@@ -534,6 +534,14 @@ h3 {
   padding: clamp(1.35rem, 3vw, 2.2rem);
 }
 
+.form-honeypot {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-details {
   display: grid;
   grid-template-columns: 1fr;
@@ -636,6 +644,26 @@ textarea:focus {
 
 .contact-form button:hover {
   background: #e1b070;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.form-status {
+  min-height: 1.4rem;
+  margin: -0.2rem 0 0;
+  color: #b7a9ad;
+  font-size: 1rem;
+}
+
+.form-status.is-success {
+  color: var(--gold-bright);
+}
+
+.form-status.is-error {
+  color: #d88a83;
 }
 
 footer {

@@ -231,7 +231,13 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mgobekal" method="POST">
+          <input type="hidden" name="_subject" value="Session enquiry for Miss Emilia">
+          <label class="form-honeypot" aria-hidden="true">
+            <span>Leave this field empty</span>
+            <input name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          </label>
+
           <div class="field-pair">
             <label>
               <span>Your Name</span>
@@ -266,6 +272,7 @@
           </label>
 
           <button type="submit">Send Enquiry</button>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
         </form>
       </section>
     </main>
@@ -289,22 +296,39 @@
     <script>
       const form = document.querySelector("#contact-form");
 
-      form.addEventListener("submit", (event) => {
+      const formStatus = document.querySelector("#form-status");
+      const submitButton = form.querySelector("button");
+
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const data = new FormData(form);
-        const subject = encodeURIComponent("Session enquiry for Miss Emilia");
-        const body = encodeURIComponent([
-          `Name: ${data.get("name")}`,
-          `Email: ${data.get("email")}`,
-          `Preferred date: ${data.get("date") || "Not specified"}`,
-          `Preferred duration: ${data.get("duration") || "Not specified"}`,
-          "",
-          "Interests & relevant details:",
-          data.get("message")
-        ].join("\n"));
+        formStatus.textContent = "";
+        formStatus.className = "form-status";
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending";
 
-        window.location.href = `mailto:missemiliavelvet@gmail.com?subject=${subject}&body=${body}`;
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { Accept: "application/json" }
+          });
+
+          if (!response.ok) {
+            throw new Error("Form submission failed");
+          }
+
+          form.reset();
+          formStatus.textContent = "Your enquiry has been sent.";
+          formStatus.classList.add("is-success");
+        } catch (error) {
+          formStatus.textContent = "There was a problem sending your enquiry. Please email Miss Emilia directly.";
+          formStatus.classList.add("is-error");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Enquiry";
+        }
       });
 
       const galleryLinks = [...document.querySelectorAll("[data-gallery]")];
