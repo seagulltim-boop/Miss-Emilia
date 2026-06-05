@@ -167,6 +167,18 @@ h1 {
   display: inline;
 }
 
+.hero-title-detail {
+  display: block;
+  margin-top: 1.05rem;
+  color: var(--gold-bright);
+  font-family: Inter, Arial, sans-serif;
+  font-size: clamp(0.78rem, 1.15vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
 .hero-line {
   max-width: 620px;
   margin: 1.5rem 0 2.2rem;
@@ -766,6 +778,12 @@ footer a {
 
   .hero-title span {
     display: block;
+  }
+
+  .hero-title-detail {
+    margin-top: 0.8rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
   }
 
   .section-title span {
